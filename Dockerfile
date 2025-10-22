@@ -167,16 +167,16 @@ RUN apt-get update && \
         libxslt1.1 \
         libfreetype6 \
         unzip && \
-    echo "Listen 8001" > /etc/apache2/ports.conf && \
+    echo "Listen 8080" > /etc/apache2/ports.conf && \
     a2enmod rewrite && \
     touch /use_apache
 
 COPY .docker/000-default.conf /etc/apache2/sites-available/000-default.conf
 
-EXPOSE 8001
+EXPOSE 8080
 
 HEALTHCHECK --interval=20s --timeout=10s --retries=3 \
-    CMD curl -f http://127.0.0.1:8001 || exit 1
+    CMD curl -f http://127.0.0.1:8080 || exit 1
 
 ###########################
 # global base build
