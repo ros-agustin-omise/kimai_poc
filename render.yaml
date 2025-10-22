@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: kimai
+    env: docker
+    dockerfilePath: Dockerfile
+    autoDeploy: true
+    plan: free
+    envVars:
+      - key: DATABASE_URL
+        value: mysql://kimai:kimai@db:3306/kimai
+      - key: ADMINMAIL
+        value: admin@example.com
+      - key: ADMINPASS
+        value: changeme
+    buildCommand: ""
+    startCommand: "bin/console kimai:install && symfony serve --no-tls --port=10000"
+
+databases:
+  - name: db
+    plan: free
