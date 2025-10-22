@@ -5,20 +5,3 @@ services:
     dockerfilePath: Dockerfile
     autoDeploy: true
     plan: free
-    envVars:
-      - key: DATABASE_URL
-        value: mysql://kimai:kimai@db:3306/kimai
-      - key: ADMINMAIL
-        value: admin@example.com
-      - key: ADMINPASS
-        value: changeme
-      - key: PORT
-        value: 8080
-    buildCommand: ""
-    startCommand: |
-      bin/console kimai:install --no-interaction || true
-      php -S 0.0.0.0:$PORT -t public
-
-databases:
-  - name: db
-    plan: free
