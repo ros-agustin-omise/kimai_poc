@@ -12,8 +12,12 @@ services:
         value: admin@example.com
       - key: ADMINPASS
         value: changeme
+      - key: PORT
+        value: 10000
     buildCommand: ""
-    startCommand: "bin/console kimai:install && symfony serve --no-tls --port=10000"
+    startCommand: |
+      bin/console kimai:install --no-interaction || true
+      php -S 0.0.0.0:$PORT -t public
 
 databases:
   - name: db
